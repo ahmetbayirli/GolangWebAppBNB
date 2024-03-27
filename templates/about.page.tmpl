@@ -1,0 +1,11 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<h1>{{index .StrMap "title"}}</h1>
+<p>About Content</p>
+<p>{{index .StrMap "intro"}}</p>
+<a href="http://localhost:8080/">Back to home</a>
+
+{{end}}
+

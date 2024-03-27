@@ -1,33 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"text/template"
+
+	"scroll2top.com/golangwebappbnb/config"
+	"scroll2top.com/golangwebappbnb/handlers"
 )
 
-func HomeHandler(responseWriter http.ResponseWriter, requestPointer *http.Request) {
-	renderTemplate(responseWriter, "home.page.tmpl")
-}
-
-func renderTemplate(responseWriter http.ResponseWriter, templateName string) {
-	parsedTemplate, err := template.ParseFiles("./templates/" + templateName)
-
-	handleError(err)
-
-	err = parsedTemplate.Execute(responseWriter, nil) // second argument no Data
-
-	handleError(err)
-}
-
-func handleError(err error) {
-	if err != nil {
-		fmt.Println(err)
-	}
-}
-
 func main() {
-	http.HandleFunc("/", HomeHandler)
+	var app config.AppConfig
+
+	app.SomeGlobalValue = "HelloGlobalValue"
+
+	handlers.SetConfig(&app)
+
+	http.HandleFunc("/", handlers.HomeHandler)
+	http.HandleFunc("/about", handlers.AboutHandler)
 
 	http.ListenAndServe(":8080", nil)
 }
