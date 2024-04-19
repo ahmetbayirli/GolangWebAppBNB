@@ -3,7 +3,34 @@
 {{define "content"}}
 
 <h1>Home page</h1>
-<p>Home Content</p>
+<h2>It's friday my dudes.</h2>
+
+<img src="/static/frog.jpeg" width="200px" alt="">
+
+<form method="post" action="/login" class="" novalidate>
+
+    <div class="form-group mt-3">
+        <label for="user_name">Username:</label>
+
+        <input 
+               id="user_name" autocomplete="off" type='text'
+               name='user_name' value="" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input class="form-control"
+               id="password" autocomplete="off" type='password'
+               name='password' value="" required>
+    </div>
+
+
+    <hr>
+    <input type="submit" class="btn btn-primary" value="Login">
+</form>
+
+<p>Username entered:  {{index .StrMap "user_name"}}</p>
+<p>Password entered:  {{index .StrMap "password"}}</p>
 
 {{end}}
 
